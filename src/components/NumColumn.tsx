@@ -1,5 +1,10 @@
 import React, { FC } from 'react';
-import { NativeModules, View, StyleSheet } from 'react-native';
+import {
+  NativeModules,
+  View,
+  StyleSheet,
+  TouchableHighlight,
+} from 'react-native';
 import NumButton from './NumButton';
 
 const NumColumn = (props: { nums: string[] }) => {
