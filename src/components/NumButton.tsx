@@ -1,12 +1,16 @@
 import React, { FC } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 
-const NumButton = (props: { num: string; handleFunc(btn: string): void }) => {
+const NumButton = (props: {
+  num: string;
+  handleFunc(btn: string): void;
+  last: boolean;
+}) => {
   return (
     <View style={styles.container}>
       <TouchableHighlight
         style={styles.touchable}
-        underlayColor={'#0CABA8'}
+        underlayColor={props.last ? '#0CABA8' : '#589A8D'}
         onPress={() => {
           props.handleFunc(props.num);
         }}
@@ -19,7 +23,6 @@ const NumButton = (props: { num: string; handleFunc(btn: string): void }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#023535',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

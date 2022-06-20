@@ -9,10 +9,46 @@ import {
 import NumColumn from './src/components/NumColumn';
 
 export default function App() {
-  const [currNum, setCurrNum] = useState<string>('234234');
+  const [currNum, setCurrNum] = useState<string>('');
+  const [calculation, setCalculation] = useState<string[]>([]);
+
+  const calculate = (): void => {
+    console.log('Calculating...');
+    console.log(`From calculation: ${calculation}`);
+    setCurrNum('45');
+
+    setCalculation([]);
+  };
 
   const handleClick = (btn: string): void => {
-    setCurrNum(currNum + btn);
+    const operators = ['+', '-', 'x', '/'];
+
+    if (operators.includes(btn)) {
+      if (currNum.length > 0) {
+        setCalculation([...calculation, currNum, btn]);
+        setCurrNum('');
+      }
+    } else {
+      switch (btn) {
+        case 'DEL':
+          setCurrNum(currNum.substring(0, currNum.length - 1));
+          break;
+
+        case 'CE':
+          setCurrNum('');
+          setCalculation([]);
+          break;
+
+        case '=':
+          setCalculation([...calculation, currNum]);
+          calculate();
+          break;
+
+        default:
+          setCurrNum(currNum + btn);
+      }
+    }
+    console.log(calculation);
   };
 
   return (
@@ -21,10 +57,26 @@ export default function App() {
         <Text style={{ fontSize: 50 }}>{currNum}</Text>
       </View>
       <View style={styles.bottomContainer}>
-        <NumColumn handleFunc={handleClick} nums={['7', '4', '1', 'DEL']} />
-        <NumColumn handleFunc={handleClick} nums={['8', '5', '2', '0']} />
-        <NumColumn handleFunc={handleClick} nums={['9', '6', '3', '=']} />
-        <NumColumn handleFunc={handleClick} nums={['+', '-', 'x', '/']} />
+        <NumColumn
+          last={false}
+          handleFunc={handleClick}
+          nums={['7', '4', '1', 'DEL']}
+        />
+        <NumColumn
+          last={false}
+          handleFunc={handleClick}
+          nums={['8', '5', '2', '0']}
+        />
+        <NumColumn
+          last={false}
+          handleFunc={handleClick}
+          nums={['9', '6', '3', '=']}
+        />
+        <NumColumn
+          last={true}
+          handleFunc={handleClick}
+          nums={['CE', '+', '-', 'x', '/']}
+        />
       </View>
     </View>
   );
@@ -52,8 +104,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#127369',
     flex: 0.6,
     width: '100%',
-    borderTopWidth: 3,
-    borderColor: '#10403B',
     flexDirection: 'row',
   },
 });
