@@ -7,6 +7,7 @@ import {
   StatusBar,
 } from 'react-native';
 import NumColumn from './src/components/NumColumn';
+import SpecialFunc from './src/components/SpecialFunc';
 
 export default function App() {
   const [currNum, setCurrNum] = useState<string>('');
@@ -53,6 +54,15 @@ export default function App() {
       return;
     }
 
+    if (btn === '( - )') {
+      if (currNum[0] === '-') {
+        setCurrNum(currNum.substring(1, currNum.length));
+      } else {
+        setCurrNum(`-${currNum}`);
+      }
+      return;
+    }
+
     if (operators.includes(btn)) {
       if (currNum.length > 0) {
         setCalculation([...calculation, currNum, btn]);
@@ -95,11 +105,12 @@ export default function App() {
       <View style={styles.topContainer}>
         <Text style={{ fontSize: 50 }}>{currNum}</Text>
       </View>
+      <SpecialFunc handleFunc={handleClick} />
       <View style={styles.bottomContainer}>
         <NumColumn
           last={false}
           handleFunc={handleClick}
-          nums={['7', '4', '1', 'DEL']}
+          nums={['7', '4', '1', '.']}
         />
         <NumColumn
           last={false}
@@ -114,7 +125,7 @@ export default function App() {
         <NumColumn
           last={true}
           handleFunc={handleClick}
-          nums={['CE', '+', '-', 'x', '/']}
+          nums={['( - )', '+', '-', 'x', '/']}
         />
       </View>
     </View>

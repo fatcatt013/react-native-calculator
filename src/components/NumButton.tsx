@@ -5,9 +5,10 @@ const NumButton = (props: {
   num: string;
   handleFunc(btn: string): void;
   last: boolean;
+  special?: boolean;
 }) => {
   return (
-    <View style={styles.container}>
+    <View style={props.special ? styles.specialContainer : styles.container}>
       <TouchableHighlight
         style={styles.touchable}
         underlayColor={props.last ? '#0CABA8' : '#589A8D'}
@@ -26,6 +27,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  specialContainer: {
+    flex: 0.3,
   },
   touchable: {
     flex: 1,
