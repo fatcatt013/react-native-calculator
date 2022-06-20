@@ -18,11 +18,11 @@ export default function App() {
   const calculate = (): void => {
     setCalculation([...calculation, currNum]);
 
-    let temp: number = parseInt(calculation[0]);
+    let temp: number = parseFloat(calculation[0]);
     for (let i = 0; i < calculation.length - 2; ) {
       const firstNum: number = temp;
       const operator = calculation[i + 1];
-      const secondNum: number = parseInt(calculation[i + 2]);
+      const secondNum: number = parseFloat(calculation[i + 2]);
 
       switch (operator) {
         case '+':
@@ -59,6 +59,15 @@ export default function App() {
         setCurrNum(currNum.substring(1, currNum.length));
       } else {
         setCurrNum(`-${currNum}`);
+      }
+      return;
+    }
+
+    if (btn === '.') {
+      if (currNum.length > 0) {
+        setCurrNum(`${currNum}.`);
+      } else {
+        setCurrNum('0.');
       }
       return;
     }
