@@ -1,17 +1,15 @@
 import React, { FC } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 
-const NumButton = (props: { num: string }) => {
-  const handlePress = () => {
-    return true;
-  };
-
+const NumButton = (props: { num: string; handleFunc(btn: string): void }) => {
   return (
     <View style={styles.container}>
       <TouchableHighlight
         style={styles.touchable}
         underlayColor={'#0CABA8'}
-        onPress={handlePress}
+        onPress={() => {
+          props.handleFunc(props.num);
+        }}
       >
         <Text style={{ fontSize: 30, color: 'white' }}>{props.num}</Text>
       </TouchableHighlight>

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,14 +9,22 @@ import {
 import NumColumn from './src/components/NumColumn';
 
 export default function App() {
+  const [currNum, setCurrNum] = useState<string>('234234');
+
+  const handleClick = (btn: string): void => {
+    setCurrNum(currNum + btn);
+  };
+
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.topContainer}></View>
+      <View style={styles.topContainer}>
+        <Text style={{ fontSize: 50 }}>{currNum}</Text>
+      </View>
       <View style={styles.bottomContainer}>
-        <NumColumn nums={['7', '4', '1', 'DEL']} />
-        <NumColumn nums={['8', '5', '2', '0']} />
-        <NumColumn nums={['9', '6', '3', '=']} />
-        <NumColumn nums={['+', '-', 'x', '/']} />
+        <NumColumn handleFunc={handleClick} nums={['7', '4', '1', 'DEL']} />
+        <NumColumn handleFunc={handleClick} nums={['8', '5', '2', '0']} />
+        <NumColumn handleFunc={handleClick} nums={['9', '6', '3', '=']} />
+        <NumColumn handleFunc={handleClick} nums={['+', '-', 'x', '/']} />
       </View>
     </View>
   );
@@ -34,6 +42,10 @@ const styles = StyleSheet.create({
     flex: 0.4,
     width: '100%',
     paddingTop: StatusBar.currentHeight,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    paddingBottom: 10,
+    paddingRight: 20,
   },
 
   bottomContainer: {

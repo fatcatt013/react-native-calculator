@@ -7,11 +7,14 @@ import {
 } from 'react-native';
 import NumButton from './NumButton';
 
-const NumColumn = (props: { nums: string[] }) => {
+const NumColumn = (props: {
+  nums: string[];
+  handleFunc(btn: string): void;
+}) => {
   return (
     <View style={styles.container}>
       {props.nums.map((num, key) => {
-        return <NumButton num={num} key={key} />;
+        return <NumButton handleFunc={props.handleFunc} num={num} key={key} />;
       })}
     </View>
   );
