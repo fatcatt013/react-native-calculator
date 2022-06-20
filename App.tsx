@@ -11,17 +11,47 @@ import NumColumn from './src/components/NumColumn';
 export default function App() {
   const [currNum, setCurrNum] = useState<string>('');
   const [calculation, setCalculation] = useState<string[]>([]);
+  const [calculated, setCalculated] = useState<boolean>(false);
+  const [calculateNextRender, setCalculateNextRender] = useState(false);
 
   const calculate = (): void => {
-    console.log('Calculating...');
-    console.log(`From calculation: ${calculation}`);
-    setCurrNum('45');
+    setCalculation([...calculation, currNum]);
 
-    setCalculation([]);
+    let temp: number = parseInt(calculation[0]);
+    for (let i = 0; i < calculation.length - 2; ) {
+      const firstNum: number = temp;
+      const operator = calculation[i + 1];
+      const secondNum: number = parseInt(calculation[i + 2]);
+
+      switch (operator) {
+        case '+':
+          temp = firstNum + secondNum;
+          break;
+        case '-':
+          temp = firstNum - secondNum;
+          break;
+        case '/':
+          temp = firstNum / secondNum;
+          break;
+        case 'x':
+          temp = firstNum * secondNum;
+          break;
+      }
+      i += 2;
+    }
+    setCurrNum(temp.toString());
+    setCalculated(true);
   };
 
   const handleClick = (btn: string): void => {
     const operators = ['+', '-', 'x', '/'];
+
+    if (calculated) {
+      setCalculation([]);
+      setCurrNum('');
+      setCalculated(false);
+      return;
+    }
 
     if (operators.includes(btn)) {
       if (currNum.length > 0) {
@@ -41,7 +71,8 @@ export default function App() {
 
         case '=':
           setCalculation([...calculation, currNum]);
-          calculate();
+          setCurrNum('');
+          setCalculateNextRender(true);
           break;
 
         default:
@@ -51,8 +82,16 @@ export default function App() {
     console.log(calculation);
   };
 
+  if (calculateNextRender) {
+    calculate();
+    setCalculateNextRender(false);
+  }
+
   return (
     <View style={styles.mainContainer}>
+      <View style={styles.header}>
+        <Text style={{ fontSize: 20 }}>{calculation.join('')}</Text>
+      </View>
       <View style={styles.topContainer}>
         <Text style={{ fontSize: 50 }}>{currNum}</Text>
       </View>
@@ -91,7 +130,7 @@ const styles = StyleSheet.create({
 
   topContainer: {
     backgroundColor: '#8AA6A3',
-    flex: 0.4,
+    flex: 0.3,
     width: '100%',
     paddingTop: StatusBar.currentHeight,
     alignItems: 'flex-end',
@@ -105,5 +144,12 @@ const styles = StyleSheet.create({
     flex: 0.6,
     width: '100%',
     flexDirection: 'row',
+  },
+  header: {
+    backgroundColor: '#8AA6A3',
+    flex: 0.1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
