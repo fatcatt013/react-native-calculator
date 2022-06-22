@@ -149,3 +149,11 @@ describe('Testing header reactivity', () => {
     expect(header.children).toEqual(['1/4']);
   });
 });
+
+describe('Unit tests', () => {
+  test('calculation() works', () => {
+    const { container } = render(<App />);
+    const ins = container.instance;
+    expect(container).toEqual('5');
+  });
+});
