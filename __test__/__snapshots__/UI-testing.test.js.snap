@@ -533,6 +533,7 @@ exports[`Testing the UI Testing whole App UI 1`] = `
           "fontSize": 20,
         }
       }
+      testID="header"
     />
   </View>
   <View

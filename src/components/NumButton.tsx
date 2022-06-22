@@ -15,6 +15,7 @@ const NumButton = (props: {
         onPress={() => {
           props.handleFunc(props.num);
         }}
+        testID={props.num}
       >
         <Text style={{ fontSize: 30, color: 'white' }}>{props.num}</Text>
       </TouchableHighlight>

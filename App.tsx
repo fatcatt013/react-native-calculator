@@ -98,7 +98,6 @@ export default function App() {
           setCurrNum(currNum + btn);
       }
     }
-    console.log(calculation);
   };
 
   if (calculateNextRender) {
@@ -109,10 +108,14 @@ export default function App() {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.header}>
-        <Text style={{ fontSize: 20 }}>{calculation.join('')}</Text>
+        <Text testID="header" style={{ fontSize: 20 }}>
+          {calculation.join('')}
+        </Text>
       </View>
       <View style={styles.topContainer}>
-        <Text style={{ fontSize: 50 }}>{currNum}</Text>
+        <Text testID="currNum" style={{ fontSize: 50 }}>
+          {currNum}
+        </Text>
       </View>
       <SpecialFunc handleFunc={handleClick} />
       <View style={styles.bottomContainer}>
