@@ -1,6 +1,6 @@
-import { create, act } from 'react-test-renderer';
 import { fireEvent, render } from '@testing-library/react-native';
 import App from '../App';
+import { calculate } from '../src/calculate';
 
 describe('Testing button functionality', () => {
   test('Testing the functionality of buttons', () => {
@@ -60,7 +60,7 @@ describe('Testing button functionality', () => {
 
     fireEvent.press(ceButton);
 
-    expect(currNum.children).toEqual([]);
+    expect(currNum.children).toEqual(['']);
   });
 
   test('Button ( - ) can turn number to negative', () => {
@@ -152,8 +152,6 @@ describe('Testing header reactivity', () => {
 
 describe('Unit tests', () => {
   test('calculation() works', () => {
-    const { container } = render(<App />);
-    const ins = container.instance;
-    expect(container).toEqual('5');
+    expect(calculate(['3', '+', '5'], '')).toEqual('8');
   });
 });

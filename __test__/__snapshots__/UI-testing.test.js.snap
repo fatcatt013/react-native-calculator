@@ -534,7 +534,9 @@ exports[`Testing the UI Testing whole App UI 1`] = `
         }
       }
       testID="header"
-    />
+    >
+      
+    </Text>
   </View>
   <View
     style={
@@ -557,7 +559,9 @@ exports[`Testing the UI Testing whole App UI 1`] = `
         }
       }
       testID="currNum"
-    />
+    >
+      
+    </Text>
   </View>
   <View
     style={
