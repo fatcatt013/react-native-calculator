@@ -15,7 +15,7 @@ export default function App() {
   const [calculated, setCalculated] = useState<boolean>(false);
   const [calculateNextRender, setCalculateNextRender] = useState(false);
 
-  const calculate = (calculation: string[], currNum: string[]): string => {
+  const calculate = (calculation: string[], currNum: string): string => {
     let temp: number = parseFloat(calculation[0]);
     for (let i = 0; i < calculation.length - 2; ) {
       const firstNum: number = temp;
