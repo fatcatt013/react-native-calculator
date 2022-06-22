@@ -66,7 +66,7 @@ describe('Testing button functionality', () => {
   test('Button ( - ) can turn number to negative', () => {
     const { getByTestId } = render(<App />);
     const currNum = getByTestId('currNum');
-    const negativeButton = getByTestId('( - )');
+    const negativeButton = getByTestId('negative');
     const numButton = getByTestId('4');
 
     fireEvent.press(numButton);
@@ -80,8 +80,8 @@ describe('Testing mathematical operators', () => {
   test('+ working', () => {
     const { getByTestId } = render(<App />);
     const currNum = getByTestId('currNum');
-    const equals = getByTestId('=');
-    const plus = getByTestId('+');
+    const equals = getByTestId('equals');
+    const plus = getByTestId('plus');
 
     fireEvent.press(getByTestId('1'));
     fireEvent.press(plus);
@@ -94,8 +94,8 @@ describe('Testing mathematical operators', () => {
   test('- working', () => {
     const { getByTestId } = render(<App />);
     const currNum = getByTestId('currNum');
-    const equals = getByTestId('=');
-    const minus = getByTestId('-');
+    const equals = getByTestId('equals');
+    const minus = getByTestId('minus');
 
     fireEvent.press(getByTestId('1'));
     fireEvent.press(minus);
@@ -108,8 +108,8 @@ describe('Testing mathematical operators', () => {
   test('x working', () => {
     const { getByTestId } = render(<App />);
     const currNum = getByTestId('currNum');
-    const equals = getByTestId('=');
-    const times = getByTestId('x');
+    const equals = getByTestId('equals');
+    const times = getByTestId('times');
 
     fireEvent.press(getByTestId('1'));
     fireEvent.press(times);
@@ -122,8 +122,8 @@ describe('Testing mathematical operators', () => {
   test('/ working', () => {
     const { getByTestId } = render(<App />);
     const currNum = getByTestId('currNum');
-    const equals = getByTestId('=');
-    const divided = getByTestId('/');
+    const equals = getByTestId('equals');
+    const divided = getByTestId('divide');
 
     fireEvent.press(getByTestId('1'));
     fireEvent.press(divided);
@@ -137,8 +137,8 @@ describe('Testing mathematical operators', () => {
 describe('Testing header reactivity', () => {
   test('header reacts correctly', () => {
     const { getByTestId } = render(<App />);
-    const equals = getByTestId('=');
-    const divided = getByTestId('/');
+    const equals = getByTestId('equals');
+    const divided = getByTestId('divide');
     const header = getByTestId('header');
 
     fireEvent.press(getByTestId('1'));
