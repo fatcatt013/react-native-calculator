@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
+import getTestID from '../getTestID';
 
 const NumButton = (props: {
   num: string;
@@ -15,7 +16,7 @@ const NumButton = (props: {
         onPress={() => {
           props.handleFunc(props.num);
         }}
-        testID={props.num}
+        testID={getTestID(props.num)}
       >
         <Text style={{ fontSize: 30, color: 'white' }}>{props.num}</Text>
       </TouchableHighlight>
